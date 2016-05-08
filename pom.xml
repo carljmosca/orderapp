@@ -1,143 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.moscaville</groupId>
+    <groupId>moscaville.com</groupId>
     <artifactId>orderapp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <version>1.0.0</version>
+    <name>orderapp</name>
 
-    <description>orderapp</description>
-    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <vaadin.version>7.5.9</vaadin.version>
-        <vaadin.plugin.version>${version.vaadin}</vaadin.plugin.version>
-<!--        <start-class>crud.Application</start-class>-->
+        <vaadin.version>7.6.5</vaadin.version>
+        <vaadin.version.maven>7.6.5</vaadin.version.maven>
+        <touchkit.version>4.1.0</touchkit.version>
     </properties>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.3.3.RELEASE</version>
-    </parent>
-
+    <repositories>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>http://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>vaadin-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>vaadin-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.vaadin</groupId>
-            <artifactId>vaadin-spring-boot</artifactId>
-            <version>1.0.0</version>
+            <groupId>com.vaadin.addon</groupId>
+            <artifactId>vaadin-touchkit-agpl</artifactId>
+            <version>${touchkit.version}</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-server</artifactId>
             <version>${vaadin.version}</version>
-            <exclusions>
-                <!-- Remove some obsolete stuff not needed by server side Vaadin apps -->
-                <exclusion>
-                    <artifactId>vaadin-theme-compiler</artifactId>
-                    <groupId>com.vaadin</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
-            <groupId>com.vaadin.addon</groupId>
-            <artifactId>vaadin-touchkit-agpl</artifactId>
-            <version>4.0.3</version>
-            <exclusions>
-                <!-- For some reason latest touchkit depends on vaadin-themes, which is not needed -->
-                <exclusion>
-                    <groupId>com.vaadin</groupId>
-                    <artifactId>vaadin-themes</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.vaadin</groupId>
-            <artifactId>viritin</artifactId>
-            <version>1.37</version>
-        </dependency>
-        <dependency>
+            <!-- Needed for possible offline mode -->
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client</artifactId>
-            <scope>provided</scope>
             <version>${vaadin.version}</version>
-<!--            <exclusions>
-                <exclusion>
-                    <groupId>javax.validation</groupId>
-                    <artifactId>validation-api</artifactId>                    
-                </exclusion>
-            </exclusions>-->
+            <scope>provided</scope>
         </dependency>
         <dependency>
+            <!-- Needed in eclipse for compiling widgetset -->
             <groupId>com.vaadin</groupId>
             <artifactId>vaadin-client-compiler</artifactId>
+            <version>${vaadin.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <!-- Desktop fallback uses reindeer theme -->
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-themes</artifactId>
             <version>${vaadin.version}</version>
         </dependency>
-        
         <dependency>
-            <groupId>com.vaadin.addon.responsive</groupId>
-            <artifactId>responsive</artifactId>
-            <version>1.0.0.alpha4</version>
-        </dependency>
-       
-        <dependency>
-            <groupId>org.vaadin.addon</groupId>
-            <artifactId>v-leaflet</artifactId>
-            <version>0.6.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>javax.validation</groupId>
-                    <artifactId>validation-api</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.vaadin.juho</groupId>
-            <artifactId>lib-gwt-imageupload</artifactId>
-            <version>0.0.3</version>
+            <!-- Desktop fallback uses default widgetset -->
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-client-compiled</artifactId>
+            <version>${vaadin.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.vaadin.addon</groupId>
-            <artifactId>vaadin-charts</artifactId>
-            <version>1.1.8</version>
-            <type>jar</type>
-        </dependency> 
-        <dependency>
-            <groupId>org.vaadin.addons</groupId>
-            <artifactId>qrcode</artifactId>
-            <version>2.0.1</version>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>1.1.0.Final</version>
-        </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -146,37 +98,42 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!--            <plugin>
-                <groupId>in.virit.vwscdn</groupId>
-                <artifactId>vwscdn-maven-plugin</artifactId>
-                <version>1.3.4</version>
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
-            <!-- If not using cdn.virit.in, remove previous plugin and uncomment this one -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>com.vaadin</groupId>
                 <artifactId>vaadin-maven-plugin</artifactId>
-                <version>${vaadin.version}</version>
+                <version>${vaadin.version.maven}</version>
                 <configuration>
-                    <extraJvmArgs>-Xmx2g -Xss1024k</extraJvmArgs>
-                    <webappDirectory>${basedir}/target/classes/VAADIN/widgetsets</webappDirectory>
+                    <webappDirectory>${basedir}/src/main/webapp/VAADIN/widgetsets
+                    </webappDirectory>
+                    <hostedWebapp>${basedir}/src/main/webapp/VAADIN/widgetsets
+                    </hostedWebapp>
+                    <extraJvmArgs>-Xmx1g -Xss4024k</extraJvmArgs>
+                    <noServer>true</noServer>
+                    <!-- Remove draftCompile when project is ready -->
                     <draftCompile>false</draftCompile>
                     <compileReport>false</compileReport>
                     <style>OBF</style>
-                    <strict>true</strict>
-                    <runTarget>http://localhost:8080/simple</runTarget>
-                    <module>AppWidgetset</module>
+                    <persistentunitcachedir>${project.build.directory}</persistentunitcachedir>
+                    <deploy>${project.build.directory}/gwt-deploy</deploy>
+                    <runTarget>http://localhost:8080/</runTarget>
+                    <extraJvmArgs>-Xmx1024M -Xss4024k</extraJvmArgs>
+                    <modules>
+                      <module>moscaville.com.gwt.orderappWidgetSet</module>
+                    </modules>
                 </configuration>
                 <executions>
                     <execution>
                         <goals>
+                            <goal>resources</goal>
                             <goal>update-widgetset</goal>
                             <goal>compile</goal>
                         </goals>
@@ -184,8 +141,26 @@
                 </executions>
             </plugin>
 
+            <!-- As we are doing "inplace" GWT compilatio, ensure the widgetset -->
+            <!-- directory is cleaned properly -->
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>src/main/webapp/VAADIN/widgetsets</directory>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>8.1.8.v20121106</version>
+            </plugin>
         </plugins>
-        
+
         <pluginManagement>
             <plugins>
                 <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
@@ -198,17 +173,18 @@
                             <pluginExecutions>
                                 <pluginExecution>
                                     <pluginExecutionFilter>
-                                        <groupId>
-                                            in.virit.vwscdn
-                                        </groupId>
+                                        <groupId>com.vaadin</groupId>
                                         <artifactId>
-                                            vwscdn-maven-plugin
+                                            vaadin-maven-plugin
                                         </artifactId>
                                         <versionRange>
-                                            [1.3.4,)
+                                            [7.0-SNAPSHOT,)
                                         </versionRange>
                                         <goals>
-                                            <goal>generate</goal>
+                                            <goal>
+                                                update-widgetset
+                                            </goal>
+                                            <goal>resources</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>
@@ -219,68 +195,20 @@
                         </lifecycleMappingMetadata>
                     </configuration>
                 </plugin>
+                <plugin>
+                    <artifactId>maven-eclipse-plugin</artifactId>
+                    <configuration>
+                        <wtpversion>2.0</wtpversion>
+                        <additionalProjectnatures>
+                            <projectnature>com.vaadin.integration.eclipse.widgetsetNature</projectnature>
+                            </additionalProjectnatures>
+                            <additionalBuildcommands>
+                                <buildcommand>com.vaadin.integration.eclipse.widgetsetBuilder</buildcommand>
+                                <buildcommand>com.vaadin.integration.eclipse.addonStylesBuilder</buildcommand>
+                            </additionalBuildcommands>
+                    </configuration>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
-
-    <repositories>
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>http://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>http://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>vaadin-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/vaadin-snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>vaadin-addons</id>
-            <url>http://maven.vaadin.com/vaadin-addons</url>
-        </repository>
-
-        <repository>
-            <id>sonatype-snapshots</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>http://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>spring-milestones</id>
-            <name>Spring Milestones</name>
-            <url>http://repo.spring.io/milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-
 </project>
