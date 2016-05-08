@@ -13,23 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("serial")
-public class FormView extends NavigationView {
+public class ItemView extends NavigationView {
 
-    public FormView() {
+    public ItemView() {
         createComponents();
     }
 
     private void createComponents() {
-        setCaption("Form");
+        setCaption("Add");
         final VerticalComponentGroup content = new VerticalComponentGroup();
-
-        final TextField nameField = new TextField("Name");
-        nameField.setInputPrompt("Enter your name...");
-        content.addComponent(nameField);
-
-        final EmailField emailField = new EmailField("Email");
-        emailField.setInputPrompt("Enter your email address...");
-        content.addComponent(emailField);
 
         List<String> strings = new ArrayList<>();
         strings.add("Test 1");
@@ -43,7 +35,7 @@ public class FormView extends NavigationView {
 
         final Button submitButton = new Button("Submit");
         submitButton.addClickListener((ClickEvent event) -> {
-            Notification.show("Thanks!");
+            getNavigationManager().navigateBack();
         });
 
         setContent(new CssLayout(content, submitButton));
