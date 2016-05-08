@@ -11,9 +11,15 @@ public class orderappUIProvider extends UIProvider {
     @Override
     public Class<? extends UI> getUIClass(UIClassSelectionEvent event) {
 
-        boolean mobileUserAgent = event.getRequest().getHeader("user-agent")
-                .toLowerCase().contains("mobile");
-        boolean mobileParameter = event.getRequest().getParameter("mobile") != null;
+        boolean mobileUserAgent = false;
+        boolean mobileParameter = false;
+        try {
+            mobileUserAgent = event.getRequest().getHeader("user-agent")
+                    .toLowerCase().contains("mobile");
+            mobileParameter = event.getRequest().getParameter("mobile") != null;
+        } catch (Exception e) {
+
+        }
 
         if (overrideMobileUA() || mobileUserAgent || mobileParameter) {
             return orderappTouchKitUI.class;

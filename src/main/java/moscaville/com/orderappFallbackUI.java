@@ -2,6 +2,8 @@ package moscaville.com;
 
 import com.vaadin.addon.touchkit.annotations.CacheManifestEnabled;
 import com.vaadin.addon.touchkit.annotations.OfflineModeEnabled;
+import com.vaadin.annotations.Theme;
+import com.vaadin.annotations.Widgetset;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.HorizontalLayout;
@@ -14,6 +16,8 @@ import com.vaadin.ui.UI;
 @SuppressWarnings("serial")
 // Disable browser caching the app for running it when offline
 @CacheManifestEnabled(false)
+@Widgetset("moscaville.com.gwt.orderappWidgetSet")
+@Theme("touchkit")
 // Prevent showing OfflineMode client UI if network fails
 @OfflineModeEnabled(false)
 public class orderappFallbackUI extends UI {
