@@ -13,10 +13,10 @@ import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.Title;
 import com.vaadin.annotations.Widgetset;
 import com.vaadin.data.util.BeanItemContainer;
-import com.vaadin.demo.parking.ParkingOfflineModeExtension;
-import com.vaadin.demo.parking.ui.MainTabsheet;
-import com.vaadin.demo.parking.util.DataUtil;
-import com.vaadin.demo.parking.widgetset.client.model.Ticket;
+import com.moscaville.orderapp.ParkingOfflineModeExtension;
+import com.moscaville.orderapp.ui.MainTabsheet;
+import com.moscaville.orderapp.util.DataUtil;
+import com.moscaville.orderapp.widgetset.client.model.CustomerOrder;
 import com.vaadin.server.Page;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
@@ -30,8 +30,9 @@ import fi.jasoft.qrcode.QRCode;
  * The UI class for Parking demo.
  */
 @SpringUI
-@Theme("touchkit")
-@Widgetset("com.vaadin.demo.parking.widgetset.ParkingWidgetset")
+@Theme("parking")
+@Widgetset("AppWidgetset")
+//@Widgetset("com.moscaville.orderapp.widgetset.ParkingWidgetset")
 @PreserveOnRefresh
 @Title("Vaadin Parking Demo")
 @OfflineModeEnabled
@@ -45,11 +46,11 @@ public class MainUI extends UI {
     private double currentLongitude = 22.30083;
     private String user;
     private ParkingOfflineModeExtension offlineModeSettings;
-    private BeanItemContainer<Ticket> ticketContainer;
+    private BeanItemContainer<CustomerOrder> ticketContainer;
 
     @Override
     public void init(VaadinRequest request) {
-        ticketContainer = new BeanItemContainer<Ticket>(Ticket.class,
+        ticketContainer = new BeanItemContainer<CustomerOrder>(CustomerOrder.class,
                 DataUtil.generateDummyTickets());
         // Set a nice default for user for demo purposes.
         setUser("John Doe");
@@ -117,7 +118,7 @@ public class MainUI extends UI {
         return (MainUI) UI.getCurrent();
     }
 
-    public static BeanItemContainer<Ticket> getTicketContainer() {
+    public static BeanItemContainer<CustomerOrder> getTicketContainer() {
         return getApp().ticketContainer;
     }
 
