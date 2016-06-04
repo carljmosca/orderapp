@@ -7,7 +7,7 @@ package com.moscaville.orderapp.template;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.moscaville.model.CustomerOrder;
+import com.moscaville.orderapp.model.CustomerOrder;
 import com.moscaville.orderapp.dao.CustomerOrderDao;
 import java.util.List;
 import org.springframework.stereotype.Repository;

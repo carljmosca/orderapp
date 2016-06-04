@@ -1,6 +1,6 @@
-package com.moscaville.ui;
+package com.moscaville.orderapp.ui;
 
-import com.moscaville.model.OrderItem;
+import com.moscaville.orderapp.template.OrderItemTemplate;
 import com.vaadin.addon.touchkit.ui.EmailField;
 import com.vaadin.addon.touchkit.ui.NavigationView;
 import com.vaadin.addon.touchkit.ui.VerticalComponentGroup;
@@ -8,28 +8,30 @@ import com.vaadin.data.Property;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.NativeButton;
 import com.vaadin.ui.NativeSelect;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 @SuppressWarnings("serial")
-public class MenuView extends NavigationView {
+@Component
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)
+public class MenuView extends NavigationView  {
     
-    private final List<OrderItem> orderItems;
     private VerticalComponentGroup content;
+    private VerticalLayout itemLayout;
+    
+    @Autowired
+    OrderItemTemplate orderItemTemplate;
 
     public MenuView() {
-        orderItems = new ArrayList<>();
-        OrderItem orderItem = new OrderItem();
-        orderItem.setDescription("test");
-        orderItems.add(orderItem);
-        orderItem = new OrderItem();
-        orderItem.setDescription("test2");
-        orderItems.add(orderItem);
-        createComponents();
     }
 
+    @PostConstruct
     private void createComponents() {
         setCaption("Menu");
 
@@ -44,11 +46,13 @@ public class MenuView extends NavigationView {
         content.addComponent(emailField);
 
         final NativeSelect nsMenuItems = new NativeSelect("Menu Item");
-        nsMenuItems.addItems(orderItems);
+        nsMenuItems.addItems(orderItemTemplate.listOrderItems());
         content.addComponent(nsMenuItems);
         nsMenuItems.addValueChangeListener((Property.ValueChangeEvent event) -> {
             addMenuItemSelection();
         });
+        itemLayout = new VerticalLayout();
+        content.addComponent(itemLayout);
         
 //        NavigationButton button = new NavigationButton("Add Item");
 //        button.addClickListener((NavigationButtonClickEvent event) -> {
@@ -56,20 +60,21 @@ public class MenuView extends NavigationView {
 //        });
 //        content.addComponent(button);
         
+        final Table tblItems = new Table();
+        //tblItems.setContainerDataSource(tblItems);
+        content.addComponent(tblItems);
         
         setContent(content);
     }
     
     private void addMenuItemSelection() {
-        VerticalLayout vl = new VerticalLayout();
         final NativeSelect nsOptionOne = new NativeSelect("Option One");
         nsOptionOne.addItem("testxxxx");
-        vl.addComponent(nsOptionOne);
+        itemLayout.addComponent(nsOptionOne);
         NativeButton btnAdd = new NativeButton("Add");
-        vl.addComponent(btnAdd);
-        content.addComponent(vl);
+        itemLayout.addComponent(btnAdd);
         btnAdd.addClickListener((Button.ClickEvent event) -> {
-            content.removeComponent(vl);
+            itemLayout.removeAllComponents();
         });
     }
 

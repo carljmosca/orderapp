@@ -5,7 +5,7 @@
  */
 package com.moscaville.orderapp.dao;
 
-import com.moscaville.model.CustomerOrder;
+import com.moscaville.orderapp.model.CustomerOrder;
 import java.util.List;
 
 /**
@@ -13,7 +13,6 @@ import java.util.List;
  * @author moscac
  */
 public interface CustomerOrderDao {
-
 
     public void create(CustomerOrder customerOrder);
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.moscaville.model;
+package com.moscaville.orderapp.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,8 +17,10 @@ public class OrderItem implements Serializable {
     
     private int itemNumber;
     private String description;
-    private List<String> primaryAttributes;
-    private List<String> secondaryAttributes;
+    private String primaryAttribute;
+    private List<ItemAttribute> primaryAttributes;
+    private String secondaryAttribute;
+    private List<ItemAttribute> secondaryAttributes;
     
     public OrderItem() {
         primaryAttributes = new ArrayList<>();
@@ -41,19 +43,35 @@ public class OrderItem implements Serializable {
         this.description = description;
     }
 
-    public List<String> getPrimaryAttributes() {
+    public String getPrimaryAttribute() {
+        return primaryAttribute;
+    }
+
+    public void setPrimaryAttribute(String primaryAttribute) {
+        this.primaryAttribute = primaryAttribute;
+    }
+
+    public List<ItemAttribute> getPrimaryAttributes() {
         return primaryAttributes;
     }
 
-    public void setPrimaryAttributes(List<String> primaryAttributes) {
+    public void setPrimaryAttributes(List<ItemAttribute> primaryAttributes) {
         this.primaryAttributes = primaryAttributes;
     }
 
-    public List<String> getSecondaryAttributes() {
+    public String getSecondaryAttribute() {
+        return secondaryAttribute;
+    }
+
+    public void setSecondaryAttribute(String secondaryAttribute) {
+        this.secondaryAttribute = secondaryAttribute;
+    }
+
+    public List<ItemAttribute> getSecondaryAttributes() {
         return secondaryAttributes;
     }
 
-    public void setSecondaryAttributes(List<String> secondaryAttributes) {
+    public void setSecondaryAttributes(List<ItemAttribute> secondaryAttributes) {
         this.secondaryAttributes = secondaryAttributes;
     }
 

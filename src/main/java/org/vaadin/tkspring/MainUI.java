@@ -6,7 +6,7 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import com.vaadin.addon.touchkit.ui.NavigationManager;
-import com.moscaville.ui.MenuView;
+import com.moscaville.orderapp.ui.MenuView;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Theme("touchkit")
@@ -18,12 +18,13 @@ public class MainUI extends UI {
 
     @Autowired
     FirebaseConnection firebaseConnection;
+    @Autowired 
+    MenuView menuView;
     
     @Override
     protected void init(VaadinRequest request) {
 
         NavigationManager navigationManager = new NavigationManager();
-        MenuView menuView = new MenuView();
         navigationManager.navigateTo(menuView);
 
         setContent(navigationManager);

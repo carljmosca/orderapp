@@ -1,4 +1,4 @@
-package com.moscaville.ui;
+package com.moscaville.orderapp.ui;
 
 import com.vaadin.addon.touchkit.ui.NavigationView;
 import com.vaadin.addon.touchkit.ui.VerticalComponentGroup;
