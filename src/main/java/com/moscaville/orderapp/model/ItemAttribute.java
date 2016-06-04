@@ -5,11 +5,13 @@
  */
 package com.moscaville.orderapp.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author moscac
  */
-public class ItemAttribute {
+public class ItemAttribute implements Serializable {
 
     private String description;
     private boolean available;

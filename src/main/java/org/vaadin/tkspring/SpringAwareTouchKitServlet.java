@@ -1,7 +1,5 @@
 package org.vaadin.tkspring;
 
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import com.vaadin.addon.touchkit.settings.TouchKitSettings;
 import com.vaadin.spring.server.SpringVaadinServlet;
 import java.io.IOException;

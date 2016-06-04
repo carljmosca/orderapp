@@ -11,16 +11,16 @@ import com.vaadin.ui.NativeSelect;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@SuppressWarnings("serial")
 @Component
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class MenuView extends NavigationView  {
+public class MenuView extends NavigationView implements Serializable {
     
     private VerticalComponentGroup content;
     private VerticalLayout itemLayout;
