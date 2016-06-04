@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package moscaville.com.model;
+package com.moscaville.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -55,6 +55,11 @@ public class OrderItem implements Serializable {
 
     public void setSecondaryAttributes(List<String> secondaryAttributes) {
         this.secondaryAttributes = secondaryAttributes;
+    }
+
+    @Override
+    public String toString() {
+        return description;
     }
     
 }

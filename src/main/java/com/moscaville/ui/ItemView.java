@@ -1,14 +1,11 @@
-package moscaville.com.ui;
+package com.moscaville.ui;
 
-import com.vaadin.addon.touchkit.ui.EmailField;
 import com.vaadin.addon.touchkit.ui.NavigationView;
 import com.vaadin.addon.touchkit.ui.VerticalComponentGroup;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.ListSelect;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.TextField;
 import java.util.ArrayList;
 import java.util.List;
 

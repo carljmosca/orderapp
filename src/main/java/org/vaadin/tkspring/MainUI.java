@@ -1,11 +1,13 @@
 package org.vaadin.tkspring;
 
+import com.moscaville.orderapp.FirebaseConnection;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.UI;
 import com.vaadin.addon.touchkit.ui.NavigationManager;
-import moscaville.com.ui.MenuView;
+import com.moscaville.ui.MenuView;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Theme("touchkit")
 @SpringUI
@@ -14,6 +16,9 @@ import moscaville.com.ui.MenuView;
 //@Widgetset("AppWidgetset")
 public class MainUI extends UI {
 
+    @Autowired
+    FirebaseConnection firebaseConnection;
+    
     @Override
     protected void init(VaadinRequest request) {
 

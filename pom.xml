@@ -14,7 +14,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <version.vaadin>7.5.9</version.vaadin>
         <vaadin.plugin.version>${version.vaadin}</vaadin.plugin.version>
-        <start-class>crud.Application</start-class>
+        <start-class>org.vaadin.tkspring.Application</start-class>
         <docker.image.prefix>moscaville</docker.image.prefix>
     </properties>
 
@@ -71,6 +71,16 @@
             <groupId>org.vaadin</groupId>
             <artifactId>viritin</artifactId>
             <version>1.37</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-bundle</artifactId>
+            <version>1.19.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.firebase</groupId>
+            <artifactId>firebase-server-sdk</artifactId>
+            <version>3.0.0</version>
         </dependency>
     </dependencies>
 

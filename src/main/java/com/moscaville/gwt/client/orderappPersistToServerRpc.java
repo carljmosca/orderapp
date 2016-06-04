@@ -1,4 +1,4 @@
-package moscaville.com.gwt.client;
+package com.moscaville.gwt.client;
 
 import com.vaadin.shared.communication.ServerRpc;
 

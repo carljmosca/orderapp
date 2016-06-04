@@ -1,5 +1,7 @@
 package org.vaadin.tkspring;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import com.vaadin.addon.touchkit.settings.TouchKitSettings;
 import com.vaadin.spring.server.SpringVaadinServlet;
 import java.io.IOException;
@@ -9,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * License: http://www.wtfpl.net
- * 
+ *
  * @author Matti Tahvonen
  */
 public class SpringAwareTouchKitServlet extends SpringVaadinServlet {
@@ -37,7 +39,7 @@ public class SpringAwareTouchKitServlet extends SpringVaadinServlet {
         }
         super.service(request, response);
     }
-    
+
     private void serveDummyFile(HttpServletResponse response, String cacheControl)
             throws IOException {
         response.setContentType("text/css");
